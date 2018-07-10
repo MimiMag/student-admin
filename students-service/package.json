@@ -5,6 +5,7 @@
    "devDependencies": {
       "@types/node": "^8.0.29",
       "ts-node": "3.3.0",
+      "ts-node-dev": "^1.0.0-pre.26",
       "typescript": "2.5.2"
    },
    "dependencies": {
@@ -21,6 +22,7 @@
       "typeorm": "0.1.9"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node-dev src/index.ts",
+      "db:seed": "ts-node src/seeds.ts"
    }
 }

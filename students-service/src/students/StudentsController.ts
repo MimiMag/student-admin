@@ -1,32 +1,41 @@
-import { Controller, Param, Body, Get, Post, Put, Delete } from "routing-controllers";
+import { Controller, Param, Body, Get, Post, Put, Delete, NotFoundError } from "routing-controllers";
 import { Student } from "./StudentModel";
 
 @Controller()
 export class StudentController {
 
   @Get("/students")
-  async allStudents() {
+  async getAllStudents() {
     const students = await Student.find()
     return { students }
   }
 
   @Get("/students/:id")
-  getOne(@Param("id") id: number) {
-    return "This action returns student #" + id;
+  async getOne(@Param("id") id: number) {
+    const student = await Student.findOneById(id)
+    if (!student) throw new NotFoundError('Cannot find student')
+    return student
   }
 
   @Post("/students")
-  post(@Body() student: any) {
-    return "Saving student...";
+  async post(@Body() student: Student) {
+    const newStudent = await Student.save(student)
+    return newStudent
   }
 
   @Put("/students/:id")
-  put(@Param("id") id: number, @Body() student: any) {
-    return "Updating a student...";
+  async updateStudent( @Param('id') id: number, @Body() update: Partial<Student> ) {
+    const student = await Student.findOneById(id)
+    if (!student) throw new NotFoundError('Cannot find student')
+
+    return Student.merge(student, update).save()
   }
 
   @Delete("/students/:id")
-  remove(@Param("id") id: number) {
+  async remove(@Param("id") id: number) {
+    const student = await Student.findOneById(id)
+    if (!student) throw new NotFoundError('Cannot find student')
+    Student.remove(student)
     return "Removing student...";
   }
 

@@ -7,6 +7,7 @@ createConnection().then(async connection => {
   const port = process.env.PORT || 4001
 
   const app = createKoaServer({
+    cors: true,
     controllers: [StudentController]
   })
 

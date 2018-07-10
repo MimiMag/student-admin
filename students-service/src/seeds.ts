@@ -28,6 +28,7 @@ const seeding = async () => {
     const student = await new Student();
     student.firstName = sd.firstName
     student.lastName = sd.lastName
+    student.pictureUrl = 'https://ei.marketwatch.com/Multimedia/2015/07/24/Photos/MG/MW-DQ790_ARENDS_20150724151031_MG.jpg?uuid=3e3aa90a-0253-11e6-806d-0015c588dfa6'
     student.save()
   })
 } 

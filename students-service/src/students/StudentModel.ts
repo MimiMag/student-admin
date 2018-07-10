@@ -11,4 +11,8 @@ export class Student extends BaseEntity {
 
     @Column('text', { nullable: false })
     lastName: string;
+
+    @Column('text')
+    pictureUrl: string;
+
 }

@@ -6,9 +6,9 @@ export class Student extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column('text', { nullable: false })
     firstName: string;
 
-    @Column()
+    @Column('text', { nullable: false })
     lastName: string;
 }

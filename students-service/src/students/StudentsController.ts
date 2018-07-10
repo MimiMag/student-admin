@@ -1,11 +1,13 @@
 import { Controller, Param, Body, Get, Post, Put, Delete } from "routing-controllers";
+import { Student } from "./StudentModel";
 
 @Controller()
 export class StudentController {
 
   @Get("/students")
-  getAll() {
-    return "This action returns all students";
+  async allStudents() {
+    const students = await Student.find()
+    return { students }
   }
 
   @Get("/students/:id")

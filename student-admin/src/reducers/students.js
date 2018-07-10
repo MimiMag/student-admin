@@ -1,5 +1,9 @@
-export default function (state = [], action) {
-  switch (action.type) {
+import { FETCHED_ALL_STUDENTS } from '../actions/fetchStudents'
+
+export default function (state = [], { type, payload } = {}) {
+  switch (type) {
+    case FETCHED_ALL_STUDENTS:
+      return state.concat(payload)
     default:
       return state
   }

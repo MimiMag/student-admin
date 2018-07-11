@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import StudentIndex from './student-pages/index'
-import StudentShow from './student-pages/show'
+import StudentIndex from './student-components/index'
+import StudentShow from './student-components/show'
 
 class App extends Component {
   render() {

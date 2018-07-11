@@ -1,18 +1,31 @@
 import React, { PureComponent } from 'react'
-import StudentShow from './show'
+import StudentCard from './card'
 import { connect } from 'react-redux'
 import { fetchAllStudents } from '../actions/fetchStudents'
+import './index.css'
 
 class StudentIndex extends PureComponent {
   componentWillMount() {
     this.props.fetchAllStudents()
   }
 
+  renderStudentDetails(students) {
+    return students.map(student => (
+      <StudentCard student={ student } key={ student.id } className="student"/>
+    ))
+  }
+
   render() {
+    const { students } = this.props
+
+    if (!students) return null
+
     return (
-      <div>
+      <div className="index">
         <h1>I am the index page</h1>
-        <StudentShow />
+        <div className="cards">
+          {this.renderStudentDetails(students)}
+        </div>
       </div>
     )
   }

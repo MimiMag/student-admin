@@ -22,7 +22,6 @@ class StudentIndex extends PureComponent {
 
     return (
       <div className="index">
-        <h1>I am the index page</h1>
         <div className="cards">
           {this.renderStudentDetails(students)}
         </div>

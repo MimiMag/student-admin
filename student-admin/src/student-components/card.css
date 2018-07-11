@@ -27,10 +27,15 @@
   margin: 2rem;
 }
 
-.title:hover {
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
   color: #F00
 }
 
-.title:active{
+.link:active {
   color: #a60000
 }

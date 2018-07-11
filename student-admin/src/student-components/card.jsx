@@ -10,8 +10,8 @@ class StudentCard extends PureComponent {
       <div className="card">
         <img className="avatar" src={student.pictureUrl} alt={`avatar ${student.firstName}`} />
         <div className="container">
-          <Link to={`/students/${student.id}`}>
-            <h2 className="title">{student.firstName} {student.lastName}</h2>
+          <Link to={`/students/${student.id}`} className="link">
+            <h2>{student.firstName} {student.lastName}</h2>
           </Link>
         </div>
       </div>

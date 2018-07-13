@@ -1,5 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
-
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne} from "typeorm";
+import { Batch } from '../batches/BatchModel'
 @Entity()
 export class Student extends BaseEntity {
 
@@ -14,5 +14,8 @@ export class Student extends BaseEntity {
 
     @Column('text')
     pictureUrl: string;
+
+    @ManyToOne(type => Batch, batch => batch.students)
+    batch: Batch;
 
 }

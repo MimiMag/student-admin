@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchStudent } from '../actions/fetchStudents'
-import StudentCard from './card'
+import StudentCard from './Card'
 
 class StudentShow extends PureComponent {
 

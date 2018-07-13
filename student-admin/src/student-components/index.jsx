@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
-import StudentCard from './card'
+import StudentCard from './Card'
 import { connect } from 'react-redux'
 import { fetchAllStudents } from '../actions/fetchStudents'
 import './index.css'
+import { NavBar } from '../nav-components/Navbar';
 
 class StudentIndex extends PureComponent {
   componentWillMount() {
@@ -22,6 +23,7 @@ class StudentIndex extends PureComponent {
 
     return (
       <div className="index">
+        <NavBar />
         <div className="cards">
           {this.renderStudentDetails(students)}
         </div>

@@ -1,0 +1,8 @@
+.navbar {
+  width: 20%;
+  height: 100vh;
+  background: #ff0000;
+  color: white;
+  position: fixed;
+}
+

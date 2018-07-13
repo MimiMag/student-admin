@@ -4,5 +4,10 @@
   background: #ff0000;
   color: white;
   position: fixed;
+  padding-left: 2rem; 
+}
+
+.subtitle {
+  margin-top: 4rem;
 }
 

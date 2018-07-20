@@ -3,7 +3,7 @@ import StudentCard from './Card'
 import { connect } from 'react-redux'
 import { fetchAllStudents } from '../actions/fetchStudents'
 import './index.css'
-import { NavBar } from '../nav-components/Navbar';
+import NavBar from '../nav-components/Navbar';
 
 class StudentIndex extends PureComponent {
   componentWillMount() {
@@ -11,9 +11,11 @@ class StudentIndex extends PureComponent {
   }
 
   renderStudentDetails(students) {
-    return students.map(student => (
-      <StudentCard student={ student } key={ student.id } className="student"/>
-    ))
+    return students
+      .filter(s => s.batch && s.batch.id == this.props.selectedBatchId)
+      .map(s => (
+        <StudentCard student={s} key={s.id} className="student" />
+      ))
   }
 
   render() {
@@ -32,6 +34,6 @@ class StudentIndex extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ students }) => ({ students })
+const mapStateToProps = ({ students, selectedBatchId }) => ({ students, selectedBatchId })
 
 export default connect(mapStateToProps, { fetchAllStudents })(StudentIndex)

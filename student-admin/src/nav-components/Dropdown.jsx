@@ -1,26 +1,11 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-];
+import { connect } from 'react-redux'
+import { fetchAllBatches } from '../actions/fetchBatches'
+import { selectBatchId } from '../actions/selectBatchId'
 
 const ITEM_HEIGHT = 48;
 
@@ -33,13 +18,21 @@ class Dropdown extends React.Component {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
+  handleClose = (batchId) => {
+    this.setState({ anchorEl: null })
+    this.props.selectBatchId(batchId)
   };
 
+  options = (batches) => {
+    return batches.map(batch => ({id: batch.id, option: `Batch ${batch.number}`}))
+  }
+
   render() {
+    const { batches } = this.props
     const { anchorEl } = this.state;
 
+    if (!batches) return null
+    
     return (
       <div>
         <Button
@@ -64,9 +57,9 @@ class Dropdown extends React.Component {
             },
           }}
         >
-          {options.map(option => (
-            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
-              {option}
+          {this.options(batches).map(batch => (
+            <MenuItem key={batch.id} selected={batch === 'Batch 1'} onClick={() => {this.handleClose(batch.id)}}>
+              {batch.option}
             </MenuItem>
           ))}
         </Menu>
@@ -75,4 +68,6 @@ class Dropdown extends React.Component {
   }
 }
 
-export default Dropdown;
+const mapStateToProps = ({ batches }) => ({ batches })
+
+export default connect(mapStateToProps, { fetchAllBatches, selectBatchId })(Dropdown)

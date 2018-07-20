@@ -15,6 +15,8 @@ export class Student extends BaseEntity {
     @Column('text')
     pictureUrl: string;
 
-    @ManyToOne(type => Batch, batch => batch.students)
+    @ManyToOne(type => Batch, batch => batch.students, {
+        eager: true
+    })
     batch: Batch;
 }

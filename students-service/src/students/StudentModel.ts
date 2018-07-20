@@ -17,5 +17,4 @@ export class Student extends BaseEntity {
 
     @ManyToOne(type => Batch, batch => batch.students)
     batch: Batch;
-
 }

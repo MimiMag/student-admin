@@ -17,5 +17,4 @@ export class Batch extends BaseEntity {
 
   @OneToMany(type => Student,  student  => student.batch)
   students: Student[];
-
 }

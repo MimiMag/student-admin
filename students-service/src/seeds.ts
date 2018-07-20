@@ -40,20 +40,25 @@ const seeding = async () => {
   await Student.remove(students)
   await Batch.remove(batches)
 
-  await batchData.map(async (cd) => {
+  console.log('I removed all data')
+
+  batchData.map(async (cd) => {
     const batch = await new Batch();
     batch.number = cd.number
     batch.startDate = cd.startDate
     batch.graduationDate = cd.graduationDate
-    batch.save
+    batch.save()
   })
+
+  console.log('I saved some batches')
 
   const batch1 = await new Batch();
   batch1.number = 1
   batch1.startDate = new Date('January 1, 2017')
   batch1.graduationDate = new Date('June 1, 2017')
-  batch1.save
+  batch1.save()
 
+  console.log('I saved the batch with students: ', batch1)
 
   studentData.map(async (sd) => {
     const student = await new Student();
@@ -63,6 +68,8 @@ const seeding = async () => {
     student.batch = batch1
     student.save()
   })
+
+  console.log('I saved all students with a batch')
 
 } 
 

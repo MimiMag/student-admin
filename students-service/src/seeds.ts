@@ -56,7 +56,7 @@ const seeding = async () => {
   batch1.number = 1
   batch1.startDate = new Date('January 1, 2017')
   batch1.graduationDate = new Date('June 1, 2017')
-  batch1.save()
+  await batch1.save()
 
   console.log('I saved the batch with students: ', batch1)
 

@@ -3,9 +3,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux'
-import { fetchAllBatches } from '../actions/fetchBatches'
-import { selectBatchId } from '../actions/selectBatchId'
 
 const ITEM_HEIGHT = 48;
 
@@ -20,19 +17,30 @@ class Dropdown extends React.Component {
 
   handleClose = (batchId) => {
     this.setState({ anchorEl: null })
-    this.props.selectBatchId(batchId)
+    this.props.selectOption(batchId)
   };
 
-  options = (batches) => {
-    return batches.map(batch => ({id: batch.id, option: `Batch ${batch.number}`}))
+  formatOptions = (options) => {
+    return options.map(batch => {
+      if (batch.id === 0) return {id: batch.id, option: 'All Batches'}
+      if (batch.id !== 0) return {id: batch.id, option: `Batch ${batch.number}`}
+      return null
+    })
+  }
+
+  renderOptions = (options) => {
+    return this.formatOptions(options).map(batch => (
+      <MenuItem key={batch.id} selected={batch === 'Batch 1'} onClick={() => { this.handleClose(batch.id) }}>
+        {batch.option}
+      </MenuItem>
+    ))
   }
 
   render() {
-    const { batches } = this.props
+    const { options } = this.props
     const { anchorEl } = this.state;
+    if(!options) return null
 
-    if (!batches) return null
-    
     return (
       <div>
         <Button
@@ -57,17 +65,11 @@ class Dropdown extends React.Component {
             },
           }}
         >
-          {this.options(batches).map(batch => (
-            <MenuItem key={batch.id} selected={batch === 'Batch 1'} onClick={() => {this.handleClose(batch.id)}}>
-              {batch.option}
-            </MenuItem>
-          ))}
+          {this.renderOptions(options)}
         </Menu>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ batches }) => ({ batches })
-
-export default connect(mapStateToProps, { fetchAllBatches, selectBatchId })(Dropdown)
+export default Dropdown

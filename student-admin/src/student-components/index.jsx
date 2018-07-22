@@ -12,16 +12,16 @@ class StudentIndex extends PureComponent {
 
   renderStudentDetails(students) {
     return students
-      .filter(s => s.batch && s.batch.id == this.props.selectedBatchId)
+      .filter(s => s.batch && s.batch.id === this.props.selectedBatchId)
       .map(s => (
         <StudentCard student={s} key={s.id} className="student" />
       ))
   }
 
   render() {
-    const { students } = this.props
+    const { students, selectedBatchId } = this.props
 
-    if (!students) return null
+    if (!students || !selectedBatchId) return null
 
     return (
       <div className="index">

@@ -11,11 +11,18 @@ class StudentIndex extends PureComponent {
   }
 
   renderStudentDetails(students) {
+    if (this.props.selectedBatchId === 'All'){
+      return students.map(s => (
+        <StudentCard student={s} key={s.id} className="student" />
+      ))
+    }
+
     return students
-      .filter(s => s.batch && s.batch.id === this.props.selectedBatchId)
+      .filter(s => s.batch && `${s.batch.id}` === this.props.selectedBatchId)
       .map(s => (
         <StudentCard student={s} key={s.id} className="student" />
       ))
+
   }
 
   render() {

@@ -22,7 +22,7 @@ class Dropdown extends React.Component {
 
   formatOptions = (options) => {
     return options.map(batch => {
-      if (batch.id === 0) return {id: batch.id, option: 'All Batches'}
+      if (batch.id === 'All') return {id: 'All', option: 'All Batches'}
       if (batch.id !== 0) return {id: batch.id, option: `Batch ${batch.number}`}
       return null
     })

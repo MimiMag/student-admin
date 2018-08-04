@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
 import { Student } from '../students/StudentModel'
+
 @Entity()
 export class Batch extends BaseEntity {
 
@@ -17,4 +18,5 @@ export class Batch extends BaseEntity {
 
   @OneToMany(type => Student,  student  => student.batch)
   students: Student[];
+
 }

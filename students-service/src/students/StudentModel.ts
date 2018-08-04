@@ -1,5 +1,7 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, OneToMany} from "typeorm";
 import { Batch } from '../batches/BatchModel'
+import { Assignment } from "../homework/AssignmentModel";
+
 @Entity()
 export class Student extends BaseEntity {
 
@@ -19,4 +21,7 @@ export class Student extends BaseEntity {
         eager: true
     })
     batch: Batch;
+
+    @OneToMany(type => Assignment, assignment => assignment.student)
+    assignments: Assignment[]
 }

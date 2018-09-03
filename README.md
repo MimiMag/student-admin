@@ -16,3 +16,8 @@ _In this repo, I am (further) exploring several libraries and technologies such 
 ## ...Redux?
 ## ...SuperAgent?
 ## ...TypeScript?
+
+
+
+# Color Scheme:
+![](https://cd.sseu.re/Color_Scheme_-_Analogous_2018-09-03_20-11-07.png)

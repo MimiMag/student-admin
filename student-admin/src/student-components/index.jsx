@@ -6,8 +6,14 @@ import './index.css'
 import NavBar from '../nav-components/Navbar';
 
 class StudentIndex extends PureComponent {
+  state = { viewStudents: true }
+
   componentWillMount() {
     this.props.fetchAllStudents()
+  }
+
+  toggleView() {
+    this.setState({ viewStudents: !this.state.viewStudents })
   }
 
   renderStudentDetails(students) {
@@ -25,17 +31,24 @@ class StudentIndex extends PureComponent {
 
   }
 
+  renderStudentsOrResults(students) {
+    if(this.state.viewStudents) return(
+      <div className="cards">
+        {this.renderStudentDetails(students)}
+      </div>
+    )
+    return <p className="results">Todo: Results</p>
+  }
+
   render() {
     const { students, selectedBatchId } = this.props
 
     if (!students || !selectedBatchId) return null
-
+    console.log(this.state.viewStudents)
     return (
       <div className="index">
-        <NavBar />
-        <div className="cards">
-          {this.renderStudentDetails(students)}
-        </div>
+        <NavBar toggleView={ () => {this.toggleView()} }/>
+        { this.renderStudentsOrResults(students)}
       </div>
     )
   }

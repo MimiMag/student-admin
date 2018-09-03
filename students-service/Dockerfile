@@ -27,3 +27,4 @@ EXPOSE 4001
 
 # The command uses nodemon to run the application
 CMD ["ts-node-dev src/index.ts"]
+

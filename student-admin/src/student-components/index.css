@@ -11,3 +11,8 @@
   max-width: 75%;
   margin-left: 25%;
 }
+
+.results {
+  width: 100%;
+  text-align: right;
+}

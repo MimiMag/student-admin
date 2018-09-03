@@ -50,7 +50,7 @@ class Dropdown extends React.Component {
           onClick={this.handleClick}
         >
           <MoreVertIcon />
-          Choose a Class
+          Pick another batch
         </Button>
         
         <Menu

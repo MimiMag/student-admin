@@ -44,7 +44,7 @@ class StudentIndex extends PureComponent {
     const { students, selectedBatchId } = this.props
 
     if (!students || !selectedBatchId) return null
-    console.log(this.state.viewStudents)
+    
     return (
       <div className="index">
         <NavBar toggleView={ () => {this.toggleView()} }/>

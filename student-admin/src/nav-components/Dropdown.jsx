@@ -30,7 +30,7 @@ class Dropdown extends React.Component {
 
   renderOptions = (options) => {
     return this.formatOptions(options).map(batch => (
-      <MenuItem key={batch.id} selected={batch === 'Batch 1'} onClick={() => { this.handleClose(batch.id) }}>
+      <MenuItem key={`menuItem${batch.id}`} selected={batch === 'Batch 1'} onClick={() => { this.handleClose(batch.id) }}>
         {batch.option}
       </MenuItem>
     ))

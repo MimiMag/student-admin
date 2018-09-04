@@ -9,7 +9,10 @@ class StudentIndex extends PureComponent {
   state = { viewStudents: true }
 
   componentWillMount() {
-    this.props.fetchAllStudents()
+    // TODO: Fix if number of students increases
+    if(this.props.students.length === 0){
+      this.props.fetchAllStudents()
+    } 
   }
 
   toggleView() {
@@ -19,14 +22,14 @@ class StudentIndex extends PureComponent {
   renderStudentDetails(students) {
     if (this.props.selectedBatchId === 'All'){
       return students.map(s => (
-        <StudentCard student={s} key={s.id} className="student" />
+        <StudentCard student={s} key={`allStudent${s.id}`} className="student" />
       ))
     }
 
     return students
       .filter(s => s.batch && `${s.batch.id}` === this.props.selectedBatchId)
       .map(s => (
-        <StudentCard student={s} key={s.id} className="student" />
+        <StudentCard student={s} key={`batchStudent${s.id}`} className="student" />
       ))
 
   }

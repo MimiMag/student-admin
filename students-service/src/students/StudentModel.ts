@@ -22,6 +22,8 @@ export class Student extends BaseEntity {
     })
     batch: Batch;
 
-    @OneToMany(type => Assignment, assignment => assignment.student)
+    @OneToMany(type => Assignment, assignment => assignment.student, {
+        eager: true
+    })
     assignments: Assignment[]
 }

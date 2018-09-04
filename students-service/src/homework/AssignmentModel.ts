@@ -19,9 +19,7 @@ export class Assignment extends BaseEntity {
   })
   homework: Homework;
 
- @ManyToOne(type => Student, student => student.assignments, {
-   eager: true
- })
+ @ManyToOne(type => Student, student => student.assignments)
  student: Student
 
 }
